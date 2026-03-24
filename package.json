@@ -8,12 +8,14 @@
   "types": "dist/index.d.ts",
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/index.mjs",
       "require": "./dist/index.js"
     },
     "./react": {
-      "import": "./dist/react/index.mjs",
-      "require": "./dist/react/index.js"
+      "types": "./dist/react.d.ts",
+      "import": "./dist/react.mjs",
+      "require": "./dist/react.js"
     }
   },
   "files": [
