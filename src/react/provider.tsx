@@ -1,29 +1,24 @@
-import { useState, ReactNode, ReactElement } from "react";
+import { createContext, useContext } from "react";
 import { FeatureFlagClient } from "../index";
-import { FeatureFlagContext } from "./context";
 
-interface FeatureFlagProviderProps {
-  apiKey: string;
-  baseUrl?: string;
-  children: ReactNode;
-}
+const FeatureFlagContext = createContext<FeatureFlagClient | null>(null);
 
-export function FeatureFlagProvider({
-  apiKey,
-  baseUrl,
+export const FeatureFlagProvider = ({
+  client,
   children,
-}: FeatureFlagProviderProps): ReactElement {
-  const [client] = useState(
-    () =>
-      new FeatureFlagClient({
-        apiKey,
-        baseUrl,
-      }),
-  );
-
+}: {
+  client: FeatureFlagClient;
+  children: React.ReactNode;
+}) => {
   return (
     <FeatureFlagContext.Provider value={client}>
       {children}
     </FeatureFlagContext.Provider>
   );
+};
+
+export function useFeatureFlagClient(): FeatureFlagClient {
+  const client = useContext(FeatureFlagContext);
+  if (!client) throw new Error("Missing FeatureFlagProvider");
+  return client;
 }
