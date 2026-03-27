@@ -21,8 +21,7 @@ export class FeatureFlagClient {
     }
 
     this.apiKey = config.apiKey;
-    this.baseUrl =
-      config.baseUrl || "https://your-backend.vercel.app/api/v1/public";
+    this.baseUrl = config.baseUrl as string;
     this.defaultTimeout = config.defaultTimeout || 5000; // 5 seconds
   }
 
