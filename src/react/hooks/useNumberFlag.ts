@@ -1,4 +1,4 @@
-import { useFeatureFlagClient } from "./useClient";
+import { useFeatureFlagClient } from "../provider";
 import { useAsyncFlag } from "../internal/useAsyncFlag";
 
 export function useNumberFlag(key: string, defaultValue: number = 0) {
